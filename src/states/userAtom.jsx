@@ -2,6 +2,9 @@ import { atom } from "recoil";
 
 const userAtom =atom({
     key:"userAtom",
-    default:""
+    default:{
+        userName:"",
+        loginState:false
+    }
 })
 export default userAtom;

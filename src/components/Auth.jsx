@@ -3,20 +3,27 @@ import { useState } from "react"
 import userAtom from "../states/userAtom"
 
 export default function Auth() {
- var [userName, setUserName] = useRecoilState(userAtom)
+ var [userName, setUser] = useRecoilState(userAtom)
  const [inputUserName, setInputUserName] = useState("")
  var [password,setPassword] = useState("")
 function hanldLogin(){
     if(password===""){
-        alert("Nhap mat khgau")
+        alert("Nhap mat khau")
         return ;
     }
-    setUserName(inputUserName)
-    console.log(inputUserName);
+    setUser({
+      userName: inputUserName,
+      loginState: true
+    });
     
 }
 function hanldLogout(){
-    setUserName("")
+    setUser({
+        userName:"",
+        loginState:false
+    })
+    setInputUserName("")
+    setPassword("")
 }
   return (
 <>

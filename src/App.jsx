@@ -10,7 +10,7 @@ import userAtom from './states/userAtom'
 
 function App() {
   var [theme, setTheme] = useRecoilState(themeAtom);
-  var userName = useRecoilValue(userAtom)
+  var user = useRecoilValue(userAtom)
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
     localStorage.setItem("theme",theme)
@@ -25,7 +25,11 @@ function App() {
   return (
     <>
     <div>
-      {userName===""?<>Ban chua dang nhap</>:<>Ban dang dang nhap voi {userName}</>}
+      {user.loginState === false ? (
+        <>Bạn chưa đăng nhập</>
+      ) : (
+        <>Bạn đang đăng nhập với {user.userName}</>
+      )}
     </div>
     <br /><br />
     <div>
