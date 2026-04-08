@@ -5,11 +5,12 @@ import counterAtom from './states/counterAtom'
 import ComA from './components/ComA'
 import ComB from './components/ComB'
 import themeAtom from './states/themeAtom'
-
+import Auth from './components/Auth'
+import userAtom from './states/userAtom'
 
 function App() {
   var [theme, setTheme] = useRecoilState(themeAtom);
-  
+  var userName = useRecoilValue(userAtom)
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
     localStorage.setItem("theme",theme)
@@ -24,12 +25,18 @@ function App() {
   return (
     <>
     <div>
+      {userName===""?<>Ban chua dang nhap</>:<>Ban dang dang nhap voi {userName}</>}
+    </div>
+    <br /><br />
+    <div>
       <input type="radio" name="theme" checked={theme === "light"} onChange={hanldeChangeLightTheme}/> Light
       <br />
       <input type="radio" name='theme' checked={theme === "dark"} onChange={hanldeChangeDarkTheme}/> Dark
     </div>
     <ComA/>
     <ComB/>
+    <br /><br />
+    <Auth/>
     </>
   )
 }
